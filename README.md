@@ -35,4 +35,6 @@ python manage.py runserver
 
 ## Author
 
-**Rameeza Kousar**
+**## Live Demo
+
+https://ai-trip-planner-1-x6yl.onrender.comRameeza Kousar**
