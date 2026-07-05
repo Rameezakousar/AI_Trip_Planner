@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ trip.destination }} | AI Trip Planner</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        🌍 AI Trip Planner
+    </div>
+
+    <ul><li><a href="/profile/">Profile</a></li>
+
+        <li><a href="/dashboard/">Dashboard</a></li>
+        <li><a href="/plan-trip/">Plan Trip</a></li>
+    </ul>
+
+</nav>
+
+<div style="max-width:900px; margin:40px auto; padding:20px;">
+
+    <h1>{{ trip.destination }}</h1>
+    <hr>
+
+<hr>
+
+<h2>🌤 Current Weather</h2>
+
+
+<div style="
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+margin:20px 0;
+color:#222;
+">
+
+<h2 style="color:#007bff;">🌤 Current Weather</h2>
+
+{% if weather %}
+
+<h3>{{ trip.destination|title }}</h3>
+
+<p>🌡 <b>Temperature:</b> {{ weather.temp }} °C</p>
+
+<p>💧 <b>Humidity:</b> {{ weather.humidity }}%</p>
+
+<p>☁ <b>Condition:</b> {{ weather.description }}</p>
+
+{% else %}
+
+<p>Weather unavailable.</p>
+
+{% endif %}
+
+
+</div>
+<hr>
+
+<h2>🧳 Packing Checklist</h2>
+
+<ul>
+{% for item in packing_list %}
+    <li>✔ {{ item }}</li>
+{% endfor %}
+</ul>
+
+<hr>
+
+<hr>
+    <img
+    src="{{ trip.image_url }}"
+    alt="{{ trip.destination }}"
+    style="
+        width:100%;
+        height:300px;
+        object-fit:cover;
+        border-radius:12px;
+        margin:20px 0;
+    "
+>
+
+
+    <hr>
+
+    <p><strong>📅 Start Date:</strong> {{ trip.start_date }}</p>
+
+    <p><strong>📅 End Date:</strong> {{ trip.end_date }}</p>
+
+    <p><strong>💰 Budget:</strong> ₹{{ trip.budget }}</p>
+
+    <p><strong>👥 Travelers:</strong> {{ trip.travelers }}</p>
+
+    <p><strong>🏨 Hotel:</strong> {{ trip.hotel }}</p>
+
+    <p><strong>🚗 Transport:</strong> {{ trip.transport }}</p>
+
+    <hr>
+
+    <h2>🤖 AI Itinerary</h2>
+    <hr>
+
+<h2>📍 Google Maps</h2>
+
+<div style="
+background:white;
+padding:20px;
+border-radius:12px;
+margin:20px 0;
+">
+
+<iframe
+    width="100%"
+    height="350"
+    style="border:0;border-radius:10px;"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+    src="https://www.google.com/maps?q={{ trip.destination }}&output=embed">
+</iframe>
+
+<br><br>
+
+<a
+href="https://www.google.com/maps/search/?api=1&query={{ trip.destination }}"
+target="_blank">
+
+<button style="
+background:#007bff;
+color:white;
+padding:12px 20px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+">
+
+🗺 Open in Google Maps
+
+</button>
+
+</a>
+
+</div>
+
+    <pre style="
+        white-space: pre-wrap;
+        font-family: Arial, sans-serif;
+        background:#ffffff;
+        color:#222;
+        padding:20px;
+        border-radius:10px;
+        line-height:1.8;
+        font-size:16px;
+        border:1px solid #ddd;
+        overflow-x:auto;
+    ">{{ trip.itinerary }}</pre>
+
+    <br>
+
+    <a href="/dashboard/">
+        <button style="
+            padding:12px 20px;
+            border:none;
+            border-radius:8px;
+            background:#007bff;
+            color:white;
+            cursor:pointer;
+            font-size:16px;
+        ">
+            ⬅ Back to Dashboard
+        </button>
+    </a>
+
+</div>
+
+</body>
+</html>

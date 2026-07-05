@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Edit Trip</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        🌍 AI Trip Planner
+    </div>
+
+    <ul>
+        <li><a href="/dashboard/">Dashboard</a></li>
+        <li><a href="/plan-trip/">Plan Trip</a></li>
+    </ul>
+
+</nav>
+
+<div class="trip-card" style="margin:40px auto;">
+
+<h1>Edit Trip</h1>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<label>Budget</label>
+
+<input
+type="number"
+name="budget"
+value="{{ trip.budget }}"
+required>
+
+<label>Travelers</label>
+
+<input
+type="number"
+name="travelers"
+value="{{ trip.travelers }}"
+required>
+
+<label>Hotel</label>
+
+<input
+type="text"
+name="hotel"
+value="{{ trip.hotel }}"
+required>
+
+<label>Transport</label>
+
+<input
+type="text"
+name="transport"
+value="{{ trip.transport }}"
+required>
+
+<button type="submit">
+
+💾 Save Changes
+
+</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

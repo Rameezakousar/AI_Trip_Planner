@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | AI Trip Planner</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+        body{
+            background:#f5f7fa;
+            font-family:Arial,sans-serif;
+        }
+
+        .container{
+            max-width:700px;
+            margin:40px auto;
+        }
+
+        .card{
+            background:white;
+            padding:30px;
+            border-radius:12px;
+            box-shadow:0 2px 10px rgba(0,0,0,.15);
+            color:#333;
+        }
+
+        h1{
+            color:#007bff;
+            margin-bottom:20px;
+        }
+
+        p{
+            font-size:18px;
+            margin:15px 0;
+        }
+
+        .btn{
+            display:inline-block;
+            margin-top:20px;
+            padding:12px 20px;
+            background:#007bff;
+            color:white;
+            text-decoration:none;
+            border-radius:8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        🌍 AI Trip Planner
+    </div>
+
+    <ul>
+        <li><a href="/dashboard/">Dashboard</a></li>
+        <li><a href="/plan-trip/">Plan Trip</a></li>
+        <li><a href="/profile/">Profile</a></li>
+    </ul>
+
+    <a href="/logout/" class="login-btn">
+        Logout
+    </a>
+
+</nav>
+
+<div class="container">
+
+<div class="card">
+
+<h1>👤 My Profile</h1>
+
+<p><strong>Username:</strong> {{ request.user.username }}</p>
+
+<p><strong>Email:</strong> {{ request.user.email }}</p>
+
+<p><strong>Trips Planned:</strong> {{ trip_count }}</p>
+
+<p><strong>Total Budget:</strong> ₹{{ total_budget }}</p>
+
+<p><strong>Joined:</strong> {{ request.user.date_joined|date:"F Y" }}</p>
+
+<a href="/dashboard/" class="btn">
+← Back to Dashboard
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

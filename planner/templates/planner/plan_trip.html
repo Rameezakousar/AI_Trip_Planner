@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan My Trip | AI Trip Planner</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        🌍 AI Trip Planner
+    </div>
+
+    <ul>
+        <li><a href="/profile/">Profile</a></li>
+        <li><a href="/dashboard/">Dashboard</a></li>
+        <li><a href="/plan-trip/">Plan Trip</a></li>
+    </ul>
+
+    <a href="/" class="login-btn">
+        Home
+    </a>
+
+</nav>
+
+<div class="trip-container">
+
+    <div class="trip-card">
+
+        <h1>✈ Plan Your Dream Trip</h1>
+
+        <p>Fill in the details below.</p>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <input type="text"
+                   name="destination"
+                   placeholder="Destination"
+                   required>
+
+            <label>Start Date</label>
+            <input type="date"
+                   name="start_date"
+                   required>
+
+            <label>End Date</label>
+            <input type="date"
+                   name="end_date"
+                   required>
+
+            <input type="number"
+                   name="budget"
+                   placeholder="Budget (₹)"
+                   required>
+
+            <input type="number"
+                   name="travelers"
+                   placeholder="Number of Travelers"
+                   required>
+
+            <select name="hotel">
+
+                <option value="">Hotel Preference</option>
+
+                <option>Budget Hotel</option>
+
+                <option>3 Star</option>
+
+                <option>4 Star</option>
+
+                <option>5 Star Luxury</option>
+
+            </select>
+
+            <select name="transport">
+
+                <option value="">Transport</option>
+
+                <option>Flight</option>
+
+                <option>Train</option>
+
+                <option>Bus</option>
+
+                <option>Car</option>
+
+            </select>
+
+            <button type="submit">
+
+                🤖 Generate AI Trip
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
